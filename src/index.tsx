@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import Todos from './component/Todos';
 import Counter from './component/Counter';
 import store from '@/store';
+import {Provider} from 'react-redux';
 
-console.log('=====')
-console.log(store.getState())
-console.log('=====')
+
+
 ReactDOM.render(
-    <>
-        <Counter number = {0}/>
+    <Provider store={store}>
+        <Counter/>
         <hr/>
         <Todos />
-    </>,
+    </Provider>,
     document.getElementById('root')
 )

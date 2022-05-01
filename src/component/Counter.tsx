@@ -2,8 +2,8 @@
 import React, {PropsWithChildren}from 'react';
 import {connect} from 'react-redux';
 import {CombinedState, CounterState} from '@/store/reducers';
-// import * as actions from '@/store/actions/counter';
-import {add, minus} from '@/store/actions/counter';
+import * as actions from '@/store/actions/counter';
+// import {add, minus} from '@/store/actions/counter';
 // interface Props {
 //     number: number
 // }
@@ -11,7 +11,7 @@ import {add, minus} from '@/store/actions/counter';
 /*
 加装了connect后的props, 就是action函数和CounterState整合
 */
-const actions = {add, minus};
+// const actions = {add, minus};
 type Props = CounterState & typeof actions;
 
 type ComponentProps = PropsWithChildren<Props>;
@@ -33,7 +33,8 @@ class Counter extends React.Component<ComponentProps>{
 const mapStateToProps = (state:CombinedState):CounterState => state.counter;
 export default connect(
     mapStateToProps,
-    {add, minus}
+    // {add, minus}
+    actions
 )(Counter);
 
 /*

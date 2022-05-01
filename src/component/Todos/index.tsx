@@ -2,16 +2,15 @@ import React from 'react';
 import {Todo} from '@/models';
 import TodoInput from './TodoInput';
 import TodoItem from './Todoitem';
+import {connect} from 'react-redux';
+import {CombinedState, TodosState} from '@/store/reducers';
+import * as actions from '@/store/actions/todos';
 
-interface Props {
+type Props = TodosState & typeof actions;
 
-}
+interface State {}
 
-interface State {
-    todos: Array<Todo>
-}
-
-export default class Todos extends React.Component<Props, State> {
+class Todos extends React.Component<Props, State> {
 
     state = {
         todos: [] as Array<Todo>
@@ -40,4 +39,7 @@ export default class Todos extends React.Component<Props, State> {
         )
     }
 
-} 
+}
+
+const mapStateToProps = (state: CombinedState): TodosState => state.todos;
+export default connect(mapStateToProps, actions)(Todos)
